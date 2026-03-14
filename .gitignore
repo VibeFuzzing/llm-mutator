@@ -1,4 +1,5 @@
 *.o
+*.d
 AFLplusplus
 *.so
 compile_commands.json
