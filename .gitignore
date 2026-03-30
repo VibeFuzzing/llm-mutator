@@ -3,3 +3,4 @@
 AFLplusplus
 *.so
 compile_commands.json
+model/
