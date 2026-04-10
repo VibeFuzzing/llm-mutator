@@ -206,3 +206,6 @@ size_t afl_custom_fuzz(llm_mutator_t *data, uint8_t *buf, size_t buf_size,
   // leak output_builder's buffer
   return output_builder.len;
 }
+
+// TODO: free more things.
+void afl_custom_deinit(llm_mutator_t *data) { free(data); }
