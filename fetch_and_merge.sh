@@ -6,7 +6,7 @@ pushd model
 
 for url in $(../fetch_model_urls.py)
 do
-    curl $url -O
+    curl $url -LO
 done
 
 ../reassemble_gguf.sh model_q4km.gguf
