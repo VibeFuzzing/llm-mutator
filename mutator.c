@@ -158,8 +158,11 @@ size_t afl_custom_fuzz(llm_mutator_t *data, uint8_t *buf, size_t buf_size,
     string_push(&input_buf, '\n');
   }
 
-  OllamaChatMessage *response = ollama_chat(data->base_url, data->model, "user",
-                                            input_buf.data, data->history);
+  OllamaChatMessage *response;
+  while (!(response = ollama_chat(data->base_url, data->model, "user",
+                                  input_buf.data, data->history))) {
+    fprintf(data->log_file, "error occurred in chat, retrying...\n");
+  }
 
   free_string(&input_buf);
 
