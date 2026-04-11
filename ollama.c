@@ -220,7 +220,6 @@ OllamaGenerateResponse *ollama_generate(const char *base_url, const char *model,
             cJSON *done_reason = cJSON_GetObjectItem(json, "done_reason");
             if (done_reason && strcmp(done_reason->valuestring, "stop") != 0) {
                 fprintf(stderr, "Warning: done_reason is '%s', expected 'stop'\n", done_reason->valuestring);
-                return NULL;
             }
             
             cJSON *context = cJSON_GetObjectItem(json, "context");
@@ -409,8 +408,6 @@ OllamaChatMessage *ollama_chat(const char *base_url, const char *model, const ch
             chat_set_role(response_chat, role->valuestring);
             if (done_reason && strcmp(done_reason->valuestring, "stop") != 0) {
                 fprintf(stderr, "Warning: done_reason is '%s', expected 'stop'\n", done_reason->valuestring);
-                free(response_chat);
-                return NULL;
             }
         }
 
